@@ -14,13 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const MAX_PACKAGES = 100;
     const MAX_STORAGE = 100;
 
-    let rawMaterial = 1000;
+    let rawMaterial = 10;
     let packages = 100;
     let storage = 100;
     let fillProgress = 0;
     let packagedCount = 0;
     let isRunning = false;
     let interval;
+
 
     const addLog = (message) => {
         logDisplay.innerHTML += `${message}\n`;
@@ -52,12 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
         interval = setInterval(() => {
             if (storage <= 0) {
                 addLog("Закончилось место на складе");
-                stopFilling();
+                handleEmergency("storage");
                 return;
             }
-            else if (rawMaterial < 10 || packages <= 0) {
-                addLog("Недостаточно сырья или упаковок для продолжения.");
-                stopFilling();
+            else if (rawMaterial < 10) {
+                addLog("Недостаточно сырья для продолжения.");
+                handleEmergency("raw");
+                return;
+            }
+            else if (packages <= 0) {
+                addLog("Недостаточно упаковок для продолжения");
+                handleEmergency("packages");
                 return;
             }
 
@@ -111,4 +117,49 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCharts();
         addLog("Склад сгружен");
     });
+
+    // Элементы модального окна
+    const emergencyModal = document.getElementById("emergency-modal");
+    const emergencyMessage = document.getElementById("emergency-message");
+    const closeButton = document.querySelector(".close-button");
+
+    const showModal = (message) => {
+        emergencyMessage.textContent = message;
+        emergencyModal.style.display = "block"; // Показываем модальное окно
+    };
+
+    const hideModal = () => {
+        emergencyModal.style.display = "none"; // Скрываем модальное окно
+    };
+
+    closeButton.addEventListener("click", hideModal);
+
+    window.addEventListener("click", (event) => {
+        if (event.target === emergencyModal) {
+            hideModal(); // Закрываем окно при клике вне области содержимого
+        }
+    });
+
+    const handleEmergency = (type) => {
+        let message = "";
+        switch (type) {
+            case "raw":
+                statusDisplay.value = "Авария: закончилось сырье!";
+                addLog("АВАРИЙНАЯ СИТУАЦИЯ: сырье закончилось.");
+                break;
+            case "packages":
+                statusDisplay.value = "Авария: закончились упаковки!";
+                addLog("АВАРИЙНАЯ СИТУАЦИЯ: упаковки закончились.");
+                break;
+            case "storage":
+                statusDisplay.value = "Авария: закончилось место на складе!";
+                addLog("АВАРИЙНАЯ СИТУАЦИЯ: место на складе закончилось.");
+                break;
+            default:
+                break;
+        }
+        statusDisplay.value = `Авария: ${message}`;
+        showModal(message); // Показываем модальное окно с сообщением
+        stopFilling(); // Останавливаем процесс фасовки
+    };
 });
