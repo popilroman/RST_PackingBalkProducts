@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateCharts = () => {
         fillPercentage.textContent = `${fillProgress}%`;
         fillBar.style.height = `${fillProgress}%`; // Устанавливаем высоту заполнения
-        storageBar.style.height = `${storage}%`;
-        rawBar.style.height = `${rawMaterial}%`;
+        storageBar.style.height = `${storage}%`;  // Устанавливаем высоту заполнения
+        rawBar.style.height = `${rawMaterial}%`;  // Устанавливаем высоту заполнения
         packageBar.style.height = `${packages}%`;
         rawRemaining.textContent = `${rawMaterial} кг`;
         packageRemaining.textContent = `${packages} шт`;
