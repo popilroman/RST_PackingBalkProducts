@@ -120,10 +120,77 @@ body {
   height: 0;
   width: 100%;
   background-color: #4caf50; /* Зеленый цвет заполнения */
-  transition: height 0.2s ease-out;
+  transition: height 0.03s ease-out;
 }
 
 #package-fill-chart p {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin: 0;
+  line-height: 150px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#storage-fill-chart {
+  position: relative;
+}
+#storage-fill-chart .fill-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  background-color: #838383;
+  transition: height 0.2s ease-out;
+}
+
+#storage-fill-chart p {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin: 0;
+  line-height: 150px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#raw-chart {
+  position: relative;
+}
+#raw-chart .fill-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  background-color: #af4c4c; 
+  transition: height 0.2s ease-out;
+}
+#raw-chart p {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin: 0;
+  line-height: 150px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#package-chart {
+  position: relative;
+}
+#package-chart .fill-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  background-color: #af4c4c; 
+  transition: height 0.2s ease-out;
+}
+#package-chart p {
   position: relative;
   z-index: 1;
   text-align: center;

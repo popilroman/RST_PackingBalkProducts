@@ -6,10 +6,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const packageRemaining = document.getElementById("package-remaining");
     const storageRemaining = document.getElementById("storage-remaining");
     const fillBar = document.getElementById("fill-bar");
+    const rawBar = document.getElementById("raw-bar");
+    const packageBar = document.getElementById("package-bar");
+    const storageBar = document.getElementById("storage-bar");
 
     let rawMaterial = 1000;
     let packages = 100;
-    let storage = 10;
+    let storage = 100;
     let fillProgress = 0;
     let packagedCount = 0;
     let isRunning = false;
@@ -23,6 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateCharts = () => {
         fillPercentage.textContent = `${fillProgress}%`;
         fillBar.style.height = `${fillProgress}%`; // Устанавливаем высоту заполнения
+        storageBar.style.height = `${storage}%`;
+        rawBar.style.height = `${rawMaterial}%`;
+        packageBar.style.height = `${packages}%`;
         rawRemaining.textContent = `${rawMaterial} кг`;
         packageRemaining.textContent = `${packages} шт`;
         storageRemaining.textContent = `${storage} шт`;
@@ -46,10 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            fillProgress += 5; // Увеличиваем заполнение на 5% каждые 0.2 секунды.
+            fillProgress += 1; // Увеличиваем заполнение на 1% каждые 0.2 секунды.
             updateCharts();
 
-            if (fillProgress >= 105) {
+            if (fillProgress >= 101) {
                 packagedCount++;
                 rawMaterial -= 10;
                 packages--;
@@ -58,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 addLog(`Упаковка завершена. Всего фасовано: ${packagedCount} шт.`);
                 resetFill();
             }
-        }, 200);
+        }, 30);
     };
 
     const stopFilling = () => {
@@ -92,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.getElementById("refill-storage").addEventListener("click", () => {
-        storage = 10;
+        storage = 100;
         updateCharts();
         addLog("Склад сгружен");
     });
