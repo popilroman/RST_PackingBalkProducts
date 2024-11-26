@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление фасовкой</title>
+    <link rel="stylesheet" href="../css/coffee.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">Администрирование</header>
+        <div class="main-content">
+            <div class="control-panel">
+                <h3>Панель управления</h3>
+                <button id="start">Пуск</button>
+                <button id="stop">Стоп</button>
+                <button id="refill-raw">Пополнить сырье</button>
+                <button id="refill-packages">Пополнить ФасУп</button>
+                <button id="refill-storage">Освободить склад</button>
+                <div class="status">
+                    <span>Статус:</span>
+                    <input id="status-display" type="text" readonly>
+                </div>
+            </div>
+            <div class="charts">
+                <h3>Графики и диаграммы</h3>
+                <div class="chart" id="package-fill-chart">
+                    <div class="fill-bar" id="fill-bar"></div>
+                    <p>Заполнение упаковки: <span id="fill-percentage">0%</span></p>
+                </div>
+                
+                <div class="chart" id="raw-chart">
+                    <div class="fill-bar raw-bar" id="fill-bar"></div>
+                    Остаток сырья: <span id="raw-remaining">1000 кг</span>
+                </div>
+                <div class="chart" id="package-chart">
+                    <div class="fill-bar package-bar" id="fill-bar"></div>
+                    Остаток упаковок: <span id="package-remaining">100 шт</span>
+                </div>
+                <div class="chart storage-chart" id="storage-chart">
+                    <div class="fill-bar storage-bar" id="storage-bar"></div>
+                    Остаток места на складе: <span id="storage-remaining">10 ед</span>
+                </div>
+            </div>
+            <div class="logs">
+                <h3>Системный журнал</h3>
+                <div id="log-display"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/coffee.js"></script>
+</body>
+</html>
