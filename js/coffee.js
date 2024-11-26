@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const packageBar = document.getElementById("package-bar");
     const storageBar = document.getElementById("storage-bar");
 
+    const MAX_RAW_MATERAIL = 1000;
+    const MAX_PACKAGES = 100;
+    const MAX_STORAGE = 100;
+
     let rawMaterial = 1000;
     let packages = 100;
     let storage = 100;
@@ -24,11 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const updateCharts = () => {
+        //Перевод в единицы измерения
+        let rawMaterialPercentage = (rawMaterial / MAX_RAW_MATERAIL) * 100;
+        let packagePercentage = (packages / MAX_PACKAGES) * 100;
+        let storagePercentage = (storage / MAX_STORAGE) * 100;
+
         fillPercentage.textContent = `${fillProgress}%`;
         fillBar.style.height = `${fillProgress}%`; // Устанавливаем высоту заполнения
-        storageBar.style.height = `${storage}%`;  // Устанавливаем высоту заполнения
-        rawBar.style.height = `${rawMaterial}%`;  // Устанавливаем высоту заполнения
-        packageBar.style.height = `${packages}%`;
+        storageBar.style.height = `${storagePercentage}%`;  // Устанавливаем высоту заполнения
+        rawBar.style.height = `${rawMaterialPercentage}%`;  // Устанавливаем высоту заполнения
+        packageBar.style.height = `${packagePercentage}%`;
         rawRemaining.textContent = `${rawMaterial} кг`;
         packageRemaining.textContent = `${packages} шт`;
         storageRemaining.textContent = `${storage} шт`;
