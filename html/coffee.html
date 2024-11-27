@@ -12,11 +12,21 @@
         <div class="main-content">
             <div class="control-panel">
                 <h3>Панель управления</h3>
-                <button id="start">ПУСК</button>
-                <button id="stop">СТОП</button>
-                <button id="refill-raw">ПОПОЛНИТЬ СЫРЬЕ</button>
-                <button id="refill-packages">ПОПОЛНИТЬ ФАСОВОЧНЫЕ УПАКОВКИ</button>
-                <button id="refill-storage">СГРУЗИТЬ СКЛАД</button>
+                <div class="buttons_panel">
+                    <div class="action_buttons">
+                        <button id="start">ПУСК</button>
+                        <button id="stop">СТОП</button>
+                        <button id="refill-raw">ПОПОЛНИТЬ СЫРЬЕ</button>
+                        <button id="refill-packages">ПОПОЛНИТЬ ФАСОВОЧНЫЕ УПАКОВКИ</button>
+                        <button id="refill-storage">СГРУЗИТЬ СКЛАД</button>
+                    </div>
+                    <div class="emergency_buttons">
+                        <button id="emergency1">ПОЛОМКА ФАСОВОЧНОГО ОБОРУДОВАНИЯ</button>
+                        <button id="emergency2">ЗАГРЯЗНЕНИЕ ВОЗДУХА</button>
+                        <button id="emergency3">ПОЖАР</button>
+                        <button id="emergency4">НЕИСПРАВНОСТЬ КОНВЕЕРНОЙ СИСТЕМЫ</button>
+                    </div>
+                </div>
                 <div class="status">
                     <span>Статус:</span>
                     <input id="status-display" type="text" readonly>
@@ -48,12 +58,57 @@
             </div>
         </div>
     </div>
+
     <div id="emergency-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <img src="../img/attention.svg" alt="" class="modal_img">
             <h2>Аварийная ситуация! <br> Ознакомьтесь с системным журналом</h2>
             <p id="emergency-message">Сообщение об аварии</p>
+        </div>
+    </div>
+
+    <div id="emergency-modal-first" class="emergency-modal-first totalEmergency-modal">
+        <div class="emergency-modal-first_content totalEmergency-content">
+            <span class="close-button close-button-first">&times;</span>
+            <div class="emergency-modal-first_panel totalEmergency-panel">
+                <img src="../img/attention.svg" alt="" class="modal_img">
+                <h2>Аварийная ситуация! <br>Неисправно фасовочного оборудование</h2>
+                <button>Устранить проблему</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="emergency-modal-second" class="emergency-modal-second totalEmergency-modal">
+        <div class="emergency-modal-second_content totalEmergency-content">
+            <span class="close-button close-button-second">&times;</span>
+            <div class="emergency-modal-second_panel totalEmergency-panel">
+                <img src="../img/attention.svg" alt="" class="modal_img">
+                <h2>Аварийная ситуация! <br>Загрязнение воздуха превысило норму</h2>
+                <button>Устранить проблему</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="emergency-modal-third" class="emergency-modal-third totalEmergency-modal">
+        <div class="emergency-modal-third_content totalEmergency-content">
+            <span class="close-button close-button-third">&times;</span>
+            <div class="emergency-modal-third_panel totalEmergency-panel">
+                <img src="../img/attention.svg" alt="" class="modal_img">
+                <h2>Аварийная ситуация! <br>Обнаружено возгрорание</h2>
+                <button>Устранить проблему</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="emergency-modal-forth" class="emergency-modal-forth totalEmergency-modal">
+        <div class="emergency-modal-forth_content totalEmergency-content">
+            <span class="close-button close-button-forth">&times;</span>
+            <div class="emergency-modal-forth_panel totalEmergency-panel">
+                <img src="../img/attention.svg" alt="" class="modal_img">
+                <h2>Аварийная ситуация! <br>Неисправна конвеерная система</h2>
+                <button>Устранить проблему</button>
+            </div>
         </div>
     </div>
     <script src="../js/coffee.js"></script>

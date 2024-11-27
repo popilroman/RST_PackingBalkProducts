@@ -57,6 +57,31 @@ body {
   background-color: #004bb3;
 }
 
+.buttons_panel  {
+  display: flex;
+  justify-content: space-around;
+}
+
+.action_buttons {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.emergency_buttons {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.emergency_buttons button {
+  background-color: #ac0000;
+}
+
+.emergency_buttons button:hover {
+  background-color: #520000;
+}
+
 .status {
   margin-top: 20px;
 }
@@ -241,3 +266,54 @@ body {
 .modal_img {
   width: 60px;
 }
+
+
+.totalEmergency-modal {
+  display: none; /* Скрыто по умолчанию */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.totalEmergency-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.totalEmergency-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.totalEmergency-modal button {
+  display: block;
+  width: 50%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff7300;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.totalEmergency-modal button:hover {
+  background-color: #a14800;
+}
+

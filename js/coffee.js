@@ -139,6 +139,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const hideModal = () => {
         emergencyModal.style.display = "none"; // Скрываем модальное окно
+        emergencyModalFirst.style.display = "none";
+        emergencyModalSecond.style.display = "none";
+        emergencyModalThird.style.display = "none";
+        emergencyModalForth.style.display = "none";
+        
     };
 
     closeButton.addEventListener("click", hideModal);
@@ -172,4 +177,33 @@ document.addEventListener("DOMContentLoaded", () => {
         showModal(message); // Показываем модальное окно с сообщением
         stopFilling(); // Останавливаем процесс фасовки
     };
+
+    const emergencyModalFirst = document.getElementById("emergency-modal-first");
+    const closeButtonFirst = document.querySelector(".close-button-first");
+    closeButtonFirst.addEventListener("click", hideModal);
+
+    const emergencyModalSecond = document.getElementById("emergency-modal-second");
+    const closeButtonSecond = document.querySelector(".close-button-second");
+    closeButtonSecond.addEventListener("click", hideModal);
+
+    const emergencyModalThird = document.getElementById("emergency-modal-third");
+    const closeButtonThird = document.querySelector(".close-button-third");
+    closeButtonThird.addEventListener("click", hideModal);
+
+    const emergencyModalForth = document.getElementById("emergency-modal-forth");
+    const closeButtonForth = document.querySelector(".close-button-forth");
+    closeButtonForth.addEventListener("click", hideModal);
+
+    document.getElementById("emergency1").addEventListener("click", () => {
+        emergencyModalFirst.style.display = "block";
+    });
+    document.getElementById("emergency2").addEventListener("click", () => {
+        emergencyModalSecond.style.display = "block";
+    });
+    document.getElementById("emergency3").addEventListener("click", () => {
+        emergencyModalThird.style.display = "block";
+    });
+    document.getElementById("emergency4").addEventListener("click", () => {
+        emergencyModalForth.style.display = "block";
+    });
 });
