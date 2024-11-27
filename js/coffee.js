@@ -15,19 +15,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const MAX_STORAGE = 100;
 
     let rawMaterial = 10;
-    let packages = 100;
-    let storage = 100;
+    let packages = 5;
+    let storage = 3;
     let fillProgress = 0;
     let packagedCount = 0;
     let isRunning = false;
     let interval;
 
-
+    //Фукнция, добавляющая текст в системный журнал 
     const addLog = (message) => {
         logDisplay.innerHTML += `${message}\n`;
         logDisplay.scrollTop = logDisplay.scrollHeight;
     };
 
+    //Функция, обновляющая значения в графиках
     const updateCharts = () => {
         //Перевод в единицы измерения
         let rawMaterialPercentage = (rawMaterial / MAX_RAW_MATERAIL) * 100;
@@ -44,11 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
         storageRemaining.textContent = `${storage} шт`;
     };
 
+    //Функция, сбрасывающая заполнение упаковки
     const resetFill = () => {
         fillProgress = 0;
         updateCharts();
     };
 
+    //Функция, заполняющая упаковку
     const startFilling = () => {
         interval = setInterval(() => {
             if (storage <= 0) {
@@ -67,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            fillProgress += 1; // Увеличиваем заполнение на 1% каждые 0.2 секунды.
+            fillProgress += 1; // Увеличиваем заполнение на 1% каждые 0.3 секунды.
             updateCharts();
 
             if (fillProgress >= 101) {
@@ -82,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 30);
     };
 
+    //Функция, останавливающая процесс заполнения
     const stopFilling = () => {
         clearInterval(interval);
         isRunning = false;
@@ -89,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         addLog("Процесс фасовки остановлен.");
     };
 
+    //Слушатель на кнопку ПУСК
     document.getElementById("start").addEventListener("click", () => {
         if (!isRunning) {
             isRunning = true;
@@ -98,20 +103,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    //Слушатель на кнопку СТОП
     document.getElementById("stop").addEventListener("click", stopFilling);
 
+    //Слушатель на кнопку ПОПОЛНИТЬ СЫРЬЕ
     document.getElementById("refill-raw").addEventListener("click", () => {
         rawMaterial = 1000;
         updateCharts();
         addLog("Сырье пополнено до 1000 кг.");
     });
 
+    //Слушатель на кнопку ПОПОЛНИТЬ ФасУП
     document.getElementById("refill-packages").addEventListener("click", () => {
         packages = 100;
         updateCharts();
         addLog("Фасовочные упаковки пополнены до 100 шт.");
     });
 
+    //Слушатель на кнопку ОСВОБОДИТЬ СКЛАД
     document.getElementById("refill-storage").addEventListener("click", () => {
         storage = 100;
         updateCharts();
@@ -140,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    //Функция, обрабатывающая автоматические аварийные ситуации
     const handleEmergency = (type) => {
         let message = "";
         switch (type) {
