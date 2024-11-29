@@ -391,3 +391,9 @@ body {
   background-color: #cfcfcf;
   cursor:not-allowed;
 }
+
+.currentTime {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}

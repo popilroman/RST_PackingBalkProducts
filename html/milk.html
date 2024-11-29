@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление фасовкой</title>
+    <link rel="stylesheet" href="../css/milk.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">Управление фасовкой сухого молока</header>
+        <div class="main-content">
+            <div class="control-panel">
+                <h3>Панель управления</h3>
+                <div class="buttons_panel">
+                    <div class="action_buttons">
+                        <button id="start">ПУСК</button>
+                        <button id="stop">СТОП</button>
+                        <button id="refill-raw">ПОПОЛНИТЬ СЫРЬЕ</button>
+                        <button id="refill-packages">ПОПОЛНИТЬ ФАСОВОЧНЫЕ УПАКОВКИ</button>
+                        <button id="refill-storage">СГРУЗИТЬ СКЛАД</button>
+                    </div>
+                    <div class="emergency_buttons">
+                        <button id="emergency1">ПОЛОМКА ФАСОВОЧНОГО ОБОРУДОВАНИЯ</button>
+                        <button id="emergency2">ЗАГРЯЗНЕНИЕ ВОЗДУХА</button>
+                        <button id="emergency3">ПОЖАР</button>
+                        <button id="emergency4">НЕИСПРАВНОСТЬ КОНВЕЕРНОЙ СИСТЕМЫ</button>
+                    </div>
+                </div>
+                <div class="status">
+                    <span>Статус:</span>
+                    <input id="status-display" type="text" readonly>
+                </div>
+            </div>
+            <div class="charts">
+                <h3>Графики и диаграммы</h3>
+                <div class="charts_wrapper">
+                    <div class="chart" id="package-fill-chart">
+                        <div class="fill-bar" id="fill-bar"></div>
+                        <p>Заполнение упаковки: <br> <span id="fill-percentage">0%</span></p>
+                    </div>
+                    
+                    <div class="chart" id="raw-chart">
+                        <div class="fill-bar raw-bar" id="raw-bar"></div>
+                        <p>Остаток сырья: <br> <span id="raw-remaining">X кг</span></p>
+                    </div>
+                    <div class="chart" id="package-chart">
+                        <div class="fill-bar package-bar" id="package-bar"></div>
+                        <p>Остаток упаковок: <br> <span id="package-remaining">X шт</span></p>
+                    </div>
+                    <div class="chart storage-chart" id="storage-fill-chart">
+                        <div class="fill-bar storage-bar" id="storage-bar"></div>
+                        <p>Остаток места на складе: <br> <span id="storage-remaining">X ед</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="logs">
+                <div class="logs_wrapper_wrapper">
+                    <div class="logs_wrapper">
+                        <h3>Системный журнал</h3>
+                        <div class="currentTime">Текущее время: <span id="current-time">00:00</span></div>
+                        <div id="log-display"></div>
+                    </div>
+                    <div class="results_wrapper">
+                        <h3>Общие результаты</h3>
+                        <p>Всего упаковок фасовано: <span id="totalProduct">0</span> шт</p>
+                        <p>Всего потрачено сырья: <span id="totalRaw">0</span> кг</p>
+                        <p>Всего потрачено упаковок: <span id="totalPackages">0</span> шт</p>
+                        <p>Всего произошло аварийных ситуаций: <span id="totalEmergency">0</span> шт</p>
+                        <h3>Финансовые затраты</h3>
+                        <p>Аварийные ситуации: <span id="totalCostEmergency">0</span> руб</p>
+                        <p>Сырье: <span id="totalCostRaw">0</span> руб</p>
+                        <p>Фасовочные упаковки: <span id="totalCostPackages">0</span> руб</p>
+                        <p>Логистика: <span id="totalCostStorage">0</span> руб</p>
+                        <h3>Общая сумма затрат: <span id="totalCost">0</span> рублей</h3>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="emergency-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img src="../img/attention.svg" alt="" class="modal_img">
+            <h2>Аварийная ситуация! <br> Ознакомьтесь с системным журналом</h2>
+            <p id="emergency-message">Сообщение об аварии</p>
+        </div>
+    </div>
+
+    <div id="emergency-modal-first" class="emergency-modal-first totalEmergency-modal">
+        <div class="emergency-modal-first_content totalEmergency-content">
+            <!-- <span class="close-button close-button-first">&times;</span> -->
+            <div class="emergency-modal-first_panel totalEmergency-panel">
+                <img src="../img/attention.svg" alt="" class="modal_img">
+                <h2>Аварийная ситуация! <br>Неисправно фасовочное оборудование</h2>
+                <button id="emergency-modal-button1" class="emergency-modal-button">Устранить проблему</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="emergency-modal-second" class="emergency-modal-second totalEmergency-modal">
+        <div class="emergency-modal-second_content totalEmergency-content">
+            <!-- <span class="close-button close-button-second">&times;</span> -->
+            <div class="emergency-modal-second_panel totalEmergency-panel">
+                <img src="../img/attention.svg" alt="" class="modal_img">
+                <h2>Аварийная ситуация! <br>Загрязнение воздуха превысило норму</h2>
+                <button id="emergency-modal-button2" class="emergency-modal-button">Устранить проблему</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="emergency-modal-third" class="emergency-modal-third totalEmergency-modal">
+        <div class="emergency-modal-third_content totalEmergency-content">
+            <!-- <span class="close-button close-button-third">&times;</span> -->
+            <div class="emergency-modal-third_panel totalEmergency-panel">
+                <img src="../img/attention.svg" alt="" class="modal_img">
+                <h2>Аварийная ситуация! <br>Обнаружено возгрорание</h2>
+                <button id="emergency-modal-button3" class="emergency-modal-button">Устранить проблему</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="emergency-modal-forth" class="emergency-modal-forth totalEmergency-modal">
+        <div class="emergency-modal-forth_content totalEmergency-content">
+            <!-- <span class="close-button close-button-forth">&times;</span> -->
+            <div class="emergency-modal-forth_panel totalEmergency-panel">
+                <img src="../img/attention.svg" alt="" class="modal_img">
+                <h2>Аварийная ситуация! <br>Неисправна конвеерная система</h2>
+                <button id="emergency-modal-button4" class="emergency-modal-button">Устранить проблему</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixEmergency" id="fixEmergency">
+        <div class="fixEmergency-content">
+            <div class="fixEmergency-panel">
+                <h2>Устранение причины и следствия аварии</h2>
+                <h2><span id="fixEmergency-percentage" class="fixEmergency-percentage">0</span>%</h2>
+                <button id="fixEmergency-button" class="fixEmergency-button" disabled>Готово</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../js/milk.js"></script>
+    <script src="../js/currentTime.js"></script>
+</body>
+</html>
