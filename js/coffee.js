@@ -179,31 +179,112 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const emergencyModalFirst = document.getElementById("emergency-modal-first");
-    const closeButtonFirst = document.querySelector(".close-button-first");
-    closeButtonFirst.addEventListener("click", hideModal);
+    
 
     const emergencyModalSecond = document.getElementById("emergency-modal-second");
-    const closeButtonSecond = document.querySelector(".close-button-second");
-    closeButtonSecond.addEventListener("click", hideModal);
+    
 
     const emergencyModalThird = document.getElementById("emergency-modal-third");
-    const closeButtonThird = document.querySelector(".close-button-third");
-    closeButtonThird.addEventListener("click", hideModal);
+    
 
     const emergencyModalForth = document.getElementById("emergency-modal-forth");
-    const closeButtonForth = document.querySelector(".close-button-forth");
-    closeButtonForth.addEventListener("click", hideModal);
+    
 
     document.getElementById("emergency1").addEventListener("click", () => {
         emergencyModalFirst.style.display = "block";
+        fabricEmergency("equipment");
+        
     });
     document.getElementById("emergency2").addEventListener("click", () => {
         emergencyModalSecond.style.display = "block";
+        fabricEmergency("air");
     });
     document.getElementById("emergency3").addEventListener("click", () => {
         emergencyModalThird.style.display = "block";
+        fabricEmergency("fire");
     });
     document.getElementById("emergency4").addEventListener("click", () => {
         emergencyModalForth.style.display = "block";
+        fabricEmergency("conveyor");
     });
+
+    const fabricEmergency = (type) => {
+        switch (type) {
+            case "equipment":
+                statusDisplay.value = "Авария: проблемы с фасовочным оборудованием!";
+                addLog("АВАРИЙНАЯ СИТУАЦИЯ: Неисправно фасовочное оборудование");
+                break;
+            case "air":
+                statusDisplay.value = "Авария: воздух загрязнен!";
+                addLog("АВАРИЙНАЯ СИТУАЦИЯ: Загрязнение воздуха превысило норму");
+                break;
+            case "fire":
+                statusDisplay.value = "Авария: пожар!";
+                addLog("АВАРИЙНАЯ СИТУАЦИЯ: Обнаружено возгрорание");
+                break;
+            case "conveyor":
+                statusDisplay.value = "Авария: проблемы с конвеерной системой!";
+                addLog("АВАРИЙНАЯ СИТУАЦИЯ: Неисправна конвеерная система");
+                break
+            default:
+                break;
+        }
+        stopFilling(); // Останавливаем процесс фасовки
+    };
+
+    const fixEmergencyModal = document.getElementById("fixEmergency");
+    const fixEmergencyPercentage = document.getElementById("fixEmergency-percentage");
+    const fixEmergencyButton = document.getElementById("fixEmergency-button");
+    const emergencyButton1 = document.getElementById("emergency-modal-button1");
+    const emergencyButton2 = document.getElementById("emergency-modal-button2");
+    const emergencyButton3 = document.getElementById("emergency-modal-button3");
+    const emergencyButton4 = document.getElementById("emergency-modal-button4");
+
+    let fixProgress = 0;
+
+    const fixEmergency = () => {
+        interval = setInterval(() => {
+            fixProgress += 1;
+            fixEmergencyPercentage.textContent = `${fixProgress}`;
+            if (fixProgress >= 100) {
+                fixEmergencyButton.disabled = false;
+                clearInterval(interval);
+                addLog("АВАРИЙНАЯ СИТУАЦИЯ УСТРАНЕНА");
+            }
+        }, 50);
+        fixProgress = 0;
+    };
+
+    emergencyButton1.addEventListener("click", () => {
+        fixEmergencyButton.disabled = true;
+        emergencyModalFirst.style.display = "none";
+        fixEmergencyModal.style.display = "block";
+        fixEmergency();
+    });
+
+    emergencyButton2.addEventListener("click", () => {
+        fixEmergencyButton.disabled = true;
+        emergencyModalSecond.style.display = "none";
+        fixEmergencyModal.style.display = "block";
+        fixEmergency();
+    });
+
+    emergencyButton3.addEventListener("click", () => {
+        fixEmergencyButton.disabled = true;
+        emergencyModalThird.style.display = "none";
+        fixEmergencyModal.style.display = "block";
+        fixEmergency();
+    });
+
+    emergencyButton4.addEventListener("click", () => {
+        fixEmergencyButton.disabled = true;
+        emergencyModalForth.style.display = "none";
+        fixEmergencyModal.style.display = "block";
+        fixEmergency();
+    });
+
+    fixEmergencyButton.addEventListener ("click", () => {
+        fixEmergencyModal.style.display = "none";
+    });
+
 });

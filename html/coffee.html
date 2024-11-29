@@ -72,47 +72,59 @@
 
     <div id="emergency-modal-first" class="emergency-modal-first totalEmergency-modal">
         <div class="emergency-modal-first_content totalEmergency-content">
-            <span class="close-button close-button-first">&times;</span>
+            <!-- <span class="close-button close-button-first">&times;</span> -->
             <div class="emergency-modal-first_panel totalEmergency-panel">
                 <img src="../img/attention.svg" alt="" class="modal_img">
-                <h2>Аварийная ситуация! <br>Неисправно фасовочного оборудование</h2>
-                <button>Устранить проблему</button>
+                <h2>Аварийная ситуация! <br>Неисправно фасовочное оборудование</h2>
+                <button id="emergency-modal-button1" class="emergency-modal-button">Устранить проблему</button>
             </div>
         </div>
     </div>
 
     <div id="emergency-modal-second" class="emergency-modal-second totalEmergency-modal">
         <div class="emergency-modal-second_content totalEmergency-content">
-            <span class="close-button close-button-second">&times;</span>
+            <!-- <span class="close-button close-button-second">&times;</span> -->
             <div class="emergency-modal-second_panel totalEmergency-panel">
                 <img src="../img/attention.svg" alt="" class="modal_img">
                 <h2>Аварийная ситуация! <br>Загрязнение воздуха превысило норму</h2>
-                <button>Устранить проблему</button>
+                <button id="emergency-modal-button2" class="emergency-modal-button">Устранить проблему</button>
             </div>
         </div>
     </div>
 
     <div id="emergency-modal-third" class="emergency-modal-third totalEmergency-modal">
         <div class="emergency-modal-third_content totalEmergency-content">
-            <span class="close-button close-button-third">&times;</span>
+            <!-- <span class="close-button close-button-third">&times;</span> -->
             <div class="emergency-modal-third_panel totalEmergency-panel">
                 <img src="../img/attention.svg" alt="" class="modal_img">
                 <h2>Аварийная ситуация! <br>Обнаружено возгрорание</h2>
-                <button>Устранить проблему</button>
+                <button id="emergency-modal-button3" class="emergency-modal-button">Устранить проблему</button>
             </div>
         </div>
     </div>
 
     <div id="emergency-modal-forth" class="emergency-modal-forth totalEmergency-modal">
         <div class="emergency-modal-forth_content totalEmergency-content">
-            <span class="close-button close-button-forth">&times;</span>
+            <!-- <span class="close-button close-button-forth">&times;</span> -->
             <div class="emergency-modal-forth_panel totalEmergency-panel">
                 <img src="../img/attention.svg" alt="" class="modal_img">
                 <h2>Аварийная ситуация! <br>Неисправна конвеерная система</h2>
-                <button>Устранить проблему</button>
+                <button id="emergency-modal-button4" class="emergency-modal-button">Устранить проблему</button>
             </div>
         </div>
     </div>
+
+    <div class="fixEmergency" id="fixEmergency">
+        <div class="fixEmergency-content">
+            <div class="fixEmergency-panel">
+                <h2>Устранение причины и следствия аварии</h2>
+                <h2><span id="fixEmergency-percentage" class="fixEmergency-percentage">0</span>%</h2>
+                <button id="fixEmergency-button" class="fixEmergency-button" disabled>Готово</button>
+            </div>
+        </div>
+    </div>
+
+
     <script src="../js/coffee.js"></script>
 </body>
 </html>
