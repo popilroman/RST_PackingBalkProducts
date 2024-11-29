@@ -15,10 +15,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalPackages = document.getElementById("totalPackages");
     const totalEmergency = document.getElementById("totalEmergency");
     const totalCostEmergency = document.getElementById("totalCostEmergency");
+    const totalCostRaw = document.getElementById("totalCostRaw");
+    const totalCostPackages = document.getElementById("totalCostPackages");
+    const totalCostStorage = document.getElementById("totalCostStorage");
+    const totalCost = document.getElementById("totalCost");
 
     const MAX_RAW_MATERAIL = 1000;
     const MAX_PACKAGES = 100;
     const MAX_STORAGE = 100;
+    const costEmergencyEquipment = 50000;
+    const costEmergencyAir = 10000;
+    const costEmergencyFire = 30000;
+    const costEmergencyConvyer = 40000;
+    const COST_RAW = 5000;
+    const COST_PACKAGES = 15;
+    const COST_STORAGE = 10000;
+
+    let totalProductCount = 0;
+    let totalRawCount = 0;
+    let totalPackageCount = 0; 
+    let totalEmergencyCount = 0;
+
+    let totalEmergencyCost = 0; 
+    let totalRawCost = 0;
+    let totalPackageCost = 0;
+    let totalStorageCost = 0;
+    let total = 0;
+    
 
     let rawMaterial = 10;
     let packages = 5;
@@ -49,6 +72,17 @@ document.addEventListener("DOMContentLoaded", () => {
         rawRemaining.textContent = `${rawMaterial} кг`;
         packageRemaining.textContent = `${packages} шт`;
         storageRemaining.textContent = `${storage} шт`;
+
+        totalProduct.textContent = `${totalProductCount}`;
+        totalRaw.textContent = `${totalRawCount}`;
+        totalPackages.textContent = `${totalPackageCount}`;
+        totalEmergency.textContent = `${totalEmergencyCount}`;
+        totalCostEmergency.textContent = `${totalEmergencyCost}`;
+
+        totalCostRaw.textContent = `${totalRawCost}`;
+        totalCostPackages.textContent  = `${totalPackageCost}`; 
+        totalCostStorage.textContent = `${totalStorageCost}`;
+        totalCost.textContent = `${total}`;
     };
 
     //Функция, сбрасывающая заполнение упаковки
@@ -81,9 +115,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (fillProgress >= 101) {
                 packagedCount++;
+                totalProductCount++;
                 rawMaterial -= 10;
+                totalRawCount += 10;
+                totalRawCost += COST_RAW;
                 packages--;
+                totalPackageCount++;
+                totalPackageCost += COST_PACKAGES;
                 storage--;
+                total = total + totalRawCost + totalPackageCost;
 
                 addLog(`Упаковка завершена. Всего фасовано: ${packagedCount} шт.`);
                 resetFill();
@@ -129,6 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
     //Слушатель на кнопку ОСВОБОДИТЬ СКЛАД
     document.getElementById("refill-storage").addEventListener("click", () => {
         storage = 100;
+        totalStorageCost += COST_STORAGE;
+        total += totalStorageCost;
         updateCharts();
         addLog("Склад сгружен");
     });
@@ -165,14 +207,20 @@ document.addEventListener("DOMContentLoaded", () => {
         let message = "";
         switch (type) {
             case "raw":
+                totalEmergencyCount++;
+                updateCharts();
                 statusDisplay.value = "Авария: закончилось сырье!";
                 addLog("АВАРИЙНАЯ СИТУАЦИЯ: сырье закончилось.");
                 break;
             case "packages":
+                totalEmergencyCount++;
+                updateCharts();
                 statusDisplay.value = "Авария: закончились упаковки!";
                 addLog("АВАРИЙНАЯ СИТУАЦИЯ: упаковки закончились.");
                 break;
             case "storage":
+                totalEmergencyCount++;
+                updateCharts();
                 statusDisplay.value = "Авария: закончилось место на складе!";
                 addLog("АВАРИЙНАЯ СИТУАЦИЯ: место на складе закончилось.");
                 break;
@@ -219,18 +267,26 @@ document.addEventListener("DOMContentLoaded", () => {
             case "equipment":
                 statusDisplay.value = "Авария: проблемы с фасовочным оборудованием!";
                 addLog("АВАРИЙНАЯ СИТУАЦИЯ: Неисправно фасовочное оборудование");
+                totalEmergencyCount++;
+                updateCharts();
                 break;
             case "air":
                 statusDisplay.value = "Авария: воздух загрязнен!";
                 addLog("АВАРИЙНАЯ СИТУАЦИЯ: Загрязнение воздуха превысило норму");
+                totalEmergencyCount++;
+                updateCharts();
                 break;
             case "fire":
                 statusDisplay.value = "Авария: пожар!";
                 addLog("АВАРИЙНАЯ СИТУАЦИЯ: Обнаружено возгрорание");
+                totalEmergencyCount++;
+                updateCharts();
                 break;
             case "conveyor":
                 statusDisplay.value = "Авария: проблемы с конвеерной системой!";
                 addLog("АВАРИЙНАЯ СИТУАЦИЯ: Неисправна конвеерная система");
+                totalEmergencyCount++;
+                updateCharts();
                 break
             default:
                 break;
@@ -265,28 +321,44 @@ document.addEventListener("DOMContentLoaded", () => {
         fixEmergencyButton.disabled = true;
         emergencyModalFirst.style.display = "none";
         fixEmergencyModal.style.display = "block";
+        totalEmergencyCost += costEmergencyEquipment;
+        total += costEmergencyEquipment;
         fixEmergency();
+        addLog("На устранение аварии потрачено " + costEmergencyEquipment + " рублей");
+        updateCharts();
     });
 
     emergencyButton2.addEventListener("click", () => {
         fixEmergencyButton.disabled = true;
         emergencyModalSecond.style.display = "none";
         fixEmergencyModal.style.display = "block";
+        totalEmergencyCost += costEmergencyAir;
+        total += costEmergencyAir;
         fixEmergency();
+        addLog("На устранение аварии потрачено " + costEmergencyAir + " рублей");
+        updateCharts();
     });
 
     emergencyButton3.addEventListener("click", () => {
         fixEmergencyButton.disabled = true;
         emergencyModalThird.style.display = "none";
         fixEmergencyModal.style.display = "block";
+        totalEmergencyCost += costEmergencyFire;
+        total += costEmergencyFire;
         fixEmergency();
+        addLog("На устранение аварии потрачено " + costEmergencyFire + " рублей");
+        updateCharts();
     });
 
     emergencyButton4.addEventListener("click", () => {
         fixEmergencyButton.disabled = true;
         emergencyModalForth.style.display = "none";
         fixEmergencyModal.style.display = "block";
+        totalEmergencyCost += costEmergencyConvyer;
+        total += costEmergencyConvyer;
         fixEmergency();
+        addLog("На устранение аварии потрачено " + costEmergencyConvyer + " рублей");
+        updateCharts();
     });
 
     fixEmergencyButton.addEventListener ("click", () => {
