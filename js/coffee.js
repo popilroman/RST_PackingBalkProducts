@@ -123,7 +123,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 totalPackageCount++;
                 totalPackageCost += COST_PACKAGES;
                 storage--;
-                total = total + totalRawCost + totalPackageCost;
+                total += COST_RAW;
+                total += COST_PACKAGES;
 
                 addLog(`Упаковка завершена. Всего фасовано: ${packagedCount} шт.`);
                 resetFill();
@@ -170,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("refill-storage").addEventListener("click", () => {
         storage = 100;
         totalStorageCost += COST_STORAGE;
-        total += totalStorageCost;
+        total += COST_STORAGE;
         updateCharts();
         addLog("Склад сгружен");
     });

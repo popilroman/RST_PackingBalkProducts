@@ -132,7 +132,7 @@ body {
 
 .logs_wrapper {
   width: 45%;
-  max-height: 250px;
+  max-height: 440px;
   overflow-y: auto;
 }
 .results_wrapper {
