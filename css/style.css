@@ -33,6 +33,11 @@ body {
     text-align: center;
 }
 
+header h2 {
+    text-align: center;
+    margin-top: 40px;
+}
+
 .main {
     background-color: #D9D9D9;
     height: 95vh;

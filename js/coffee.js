@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalCostPackages = document.getElementById("totalCostPackages");
     const totalCostStorage = document.getElementById("totalCostStorage");
     const totalCost = document.getElementById("totalCost");
+    const totalProfit = document.getElementById("totalProfit");
 
     const MAX_RAW_MATERAIL = 1000;
     const MAX_PACKAGES = 100;
@@ -41,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalPackageCost = 0;
     let totalStorageCost = 0;
     let total = 0;
+    let totalProfitCost = 0;
     
 
     let rawMaterial = 10;
@@ -83,6 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
         totalCostPackages.textContent  = `${totalPackageCost}`; 
         totalCostStorage.textContent = `${totalStorageCost}`;
         totalCost.textContent = `${total}`;
+        totalProfit.textContent = `${((total-totalEmergencyCost-totalStorageCost) * 1.15) - total}`;
+
     };
 
     //Функция, сбрасывающая заполнение упаковки
@@ -208,19 +212,19 @@ document.addEventListener("DOMContentLoaded", () => {
         let message = "";
         switch (type) {
             case "raw":
-                totalEmergencyCount++;
+                
                 updateCharts();
                 statusDisplay.value = "Авария: закончилось сырье!";
                 addLog("АВАРИЙНАЯ СИТУАЦИЯ: сырье закончилось.");
                 break;
             case "packages":
-                totalEmergencyCount++;
+                ;
                 updateCharts();
                 statusDisplay.value = "Авария: закончились упаковки!";
                 addLog("АВАРИЙНАЯ СИТУАЦИЯ: упаковки закончились.");
                 break;
             case "storage":
-                totalEmergencyCount++;
+               
                 updateCharts();
                 statusDisplay.value = "Авария: закончилось место на складе!";
                 addLog("АВАРИЙНАЯ СИТУАЦИЯ: место на складе закончилось.");
