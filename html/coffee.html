@@ -42,21 +42,33 @@
                     
                     <div class="chart" id="raw-chart">
                         <div class="fill-bar raw-bar" id="raw-bar"></div>
-                        <p>Остаток сырья: <br> <span id="raw-remaining">1000 кг</span></p>
+                        <p>Остаток сырья: <br> <span id="raw-remaining">X кг</span></p>
                     </div>
                     <div class="chart" id="package-chart">
                         <div class="fill-bar package-bar" id="package-bar"></div>
-                        <p>Остаток упаковок: <br> <span id="package-remaining">100 шт</span></p>
+                        <p>Остаток упаковок: <br> <span id="package-remaining">X шт</span></p>
                     </div>
                     <div class="chart storage-chart" id="storage-fill-chart">
                         <div class="fill-bar storage-bar" id="storage-bar"></div>
-                        <p>Остаток места на складе: <br> <span id="storage-remaining">100 ед</span></p>
+                        <p>Остаток места на складе: <br> <span id="storage-remaining">X ед</span></p>
                     </div>
                 </div>
             </div>
             <div class="logs">
-                <h3>Системный журнал</h3>
-                <div id="log-display"></div>
+                <div class="logs_wrapper_wrapper">
+                    <div class="logs_wrapper">
+                        <h3>Системный журнал</h3>
+                        <div id="log-display"></div>
+                    </div>
+                    <div class="results_wrapper">
+                        <h3>Общие результаты</h3>
+                        <p>Всего упаковок фасовано: <span id="totalProduct">0</span> шт</p>
+                        <p>Всего потрачено сырья: <span id="totalRaw">0</span> кг</p>
+                        <p>Всего потрачено упаковок: <span id="totalPackages">0</span> шт</p>
+                        <p>Всего произошло аварийных ситуаций: <span id="totalEmergency">0</span> шт</p>
+                        <p>Всего потрачено на устранение аварийных ситуаций: <span id="totalCostEmergency">0</span> руб</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

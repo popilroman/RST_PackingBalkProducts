@@ -10,6 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const packageBar = document.getElementById("package-bar");
     const storageBar = document.getElementById("storage-bar");
 
+    const totalProduct = document.getElementById("totalProduct");
+    const totalRaw = document.getElementById("totalRaw");
+    const totalPackages = document.getElementById("totalPackages");
+    const totalEmergency = document.getElementById("totalEmergency");
+    const totalCostEmergency = document.getElementById("totalCostEmergency");
+
     const MAX_RAW_MATERAIL = 1000;
     const MAX_PACKAGES = 100;
     const MAX_STORAGE = 100;
